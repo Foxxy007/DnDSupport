@@ -1,9 +1,12 @@
 import eel
-import subprocess
+import subprocess, os
 
+HOME = os.path.expanduser('~')
 # Start Java backend as a subprocess
-java_process = subprocess.Popen(["java", "-jar", "/Users/theman/Documents/DnD/DnDPythonSupport/MyProject.jar"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
+try:
+    java_process = subprocess.Popen(["java", "-jar", f"{HOME}/Documents/DnD/DnDSupport/java/src/MyProject.jar"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+except:
+    os.system("bash build.sh")
 # Initialize Eel
 eel.init('web')
 
@@ -18,7 +21,7 @@ print(call_java_backend())
 
 #https://stackoverflow.com/questions/35355225/edit-and-create-html-file-using-python
 
-# with open("/Users/theman/Documents/DnD/DnDPythonSupport/index.html", "rw") as file:
+# with open(f"{HOME}/Documents/DnD/DnDSupport/index.html", "rw") as file:
 #     for lines in file
     
-# eel.start('/Users/theman/Documents/DnD/DnDPythonSupport/index.html', size=(400, 300))
+# eel.start(f"{HOME}/Documents/DnD/DnDSupport/index.html", size=(400, 300))
